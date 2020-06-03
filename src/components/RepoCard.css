@@ -1,0 +1,25 @@
+.repo-card {
+  padding: 1rem;
+  box-shadow: 0px 1px 10px #00000030;
+  text-align: left;
+}
+
+.cut-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 180px;
+  white-space: nowrap;
+}
+
+.repo-card h2 {
+  margin-bottom: 1rem;
+}
+
+.repo-card a {
+  text-decoration: none;
+}
+
+.repo-stats {
+  display: flex;
+  justify-content: space-between;
+}

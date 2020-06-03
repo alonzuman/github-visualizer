@@ -1,24 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Login from './pages/Login';
+import ErrorPage from './pages/ErrorPage';
+import Results from './pages/Results';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 function App() {
+  const [username, setUsername] = useState('');
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Switch>
+          <Route path='/' exact >
+            <Login setUsername={setUsername} username={username} />
+          </Route>
+          <Route path='/user=:username' component={Results} />
+          <Route path='/error' component={ErrorPage} />
+        </Switch>
+      </Router>
     </div>
   );
 }
