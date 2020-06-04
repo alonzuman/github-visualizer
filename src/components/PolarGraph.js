@@ -32,7 +32,7 @@ export default function PolarGraph({ events }) {
 
   return (
     <div className='graph-container'>
-      <h2>Polar Example</h2>
+      <h2>Common Actions</h2>
       <Polar data={data} />
     </div>
   )

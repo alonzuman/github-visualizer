@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Login.css';
 import { Redirect } from 'react-router-dom';
 
 export default function Login({ setUsername, username }) {
@@ -9,10 +10,12 @@ export default function Login({ setUsername, username }) {
   }
 
   return (
-    <div>
+    <div className='login-container'>
       {isFetching && <Redirect to={`/user=${username}`} />}
-      <input value={username} onChange={e => setUsername(e.target.value)} />
-      <button onClick={handleSubmit}>Click me</button>
+      <i className="login-icon fab fa-github"></i>
+      <h1>Github Data Visualizer</h1>
+      <input placeholder='Your github @username' value={username} onChange={e => setUsername(e.target.value)} />
+      <button onClick={handleSubmit}>Go!</button>
     </div>
   )
 }

@@ -1,8 +1,29 @@
 .stats-bar {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .stat-item {
-  
+  box-shadow: var(--shadow);
+  background-color: var(--dark);
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1rem 0.5rem;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .stats-bar {
+    flex-direction: column;
+    margin: 1rem 0;
+  }
+
+  .stat-item {
+    margin: 0.3rem 0;
+  }
 }

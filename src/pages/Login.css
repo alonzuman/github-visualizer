@@ -1,0 +1,32 @@
+a {
+  color: white;
+}
+
+.login-container {
+  text-align: center;
+  height: 100vh;
+  max-width: 768px;
+  margin: 300px auto;
+  padding: 1rem;
+}
+
+input {
+  padding: 0.5rem 1rem;
+  width: 100%;
+  font-size: 1rem;
+  font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Lucida Console", Monaco, monospace;;
+}
+
+button {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  width: 100%;
+}
+
+input:focus {
+  outline: none;
+}
+
+.login-icon  {
+  font-size: 8rem;
+}

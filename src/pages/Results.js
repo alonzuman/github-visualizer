@@ -19,7 +19,7 @@ export default function Results() {
     try {
       const res = await axios.get(`https://api.github.com/users/${username}`);
       setUser(res.data);
-      console.log(res.data);
+      // console.log(res.data);
     } catch (error) {
       console.log(error)
       setError('Failed to fetch');
@@ -30,7 +30,7 @@ export default function Results() {
     try {
       const res = await axios.get(`https://api.github.com/users/${username}/repos?per_page=100`);
       setRepos(res.data)
-      console.log(res.data);
+      // console.log(res.data);
     } catch (error) {
       setError('Failed to fetch')
     }
@@ -39,16 +39,16 @@ export default function Results() {
   const fetchEvents = async () => {
     try {
       const res = await axios.get(`https://api.github.com/users/${username}/events`);
-      console.log(res.data);
+      // console.log(res.data);
       setEvents(res.data);
     } catch (error) {
       setError('Failed to fetch')
     }
   }
 
-  const fetchLanguages = () => {
+  const fetchLanguages = async () => {
     const me = new GhPolyglot(`${username}`);
-    me.userStats((err, stats) => {
+    await me.userStats((err, stats) => {
       if (err) {
         console.log(err)
       }
@@ -58,14 +58,14 @@ export default function Results() {
 
   useEffect(() => {
     setIsLoading(true);
-    // fetchUser();
-    // fetchLanguages();
-    // fetchRepos();
-    // fetchEvents();
-    setEvents(dummyEvents);
-    setLang(dummyLang);
-    setUser(dummyUser);
-    setRepos(dummyRepos);
+    fetchUser();
+    fetchLanguages();
+    fetchRepos();
+    fetchEvents();
+    // setEvents(dummyEvents);
+    // setLang(dummyLang);
+    // setUser(dummyUser);
+    // setRepos(dummyRepos);
     setIsLoading(false);
   }, [])
 
@@ -74,7 +74,7 @@ export default function Results() {
       {isLoading && <h1>Spinner</h1>}
       {error && <Redirect to='/error' />}
       {user && <Personal user={user} />}
-      {events && <DataVisualization languages={lang} repositories={repos} events={events} />}
+      {(events && repos) && <DataVisualization languages={lang} repositories={repos} events={events} />}
     </div>
   )
 }

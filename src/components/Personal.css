@@ -4,11 +4,22 @@
   margin: 0 auto;
 }
 
+.personal-info a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.personal-info a:hover {
+  text-decoration: underline;
+}
+
 .avatar {
   width: 160px;
   height: 160px;
   border-radius: 50%;
   object-fit: cover;
+  border: 8px solid var(--primary);
+  box-shadow: var(--shadow);
 }
 
 .username {

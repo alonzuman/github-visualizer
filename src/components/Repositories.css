@@ -9,10 +9,18 @@
   .repos-grid {
     grid-template-columns: 1fr 1fr;
   }
+
+  .cut-text {
+    width: 250px;
+  }
 }
 
 @media only screen and (max-width: 500px) {
   .repos-grid {
     grid-template-columns: 1fr;
+  }
+
+  .cut-text {
+    width: 200px;
   }
 }
