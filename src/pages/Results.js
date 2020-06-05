@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, Redirect } from 'react-router-dom';
 import Personal from '../components/Personal';
-import GhPolyglot from 'gh-polyglot';
 import { dummyRepos, dummyLang, dummyUser, dummyEvents } from '../utils/data';
 import DataVisualization from '../components/DataVisualization';
 
@@ -43,23 +42,11 @@ export default function Results() {
     }
   }
 
-  const fetchLanguages = async () => {
-    const me = await new GhPolyglot(`${username}`);
-    me.userStats((err, stats) => {
-      if (err) {
-        console.log(err)
-      }
-      setLang(stats)
-    });
-  };
-
   useEffect(() => {
     setIsLoading(true);
     fetchUser();
-    fetchLanguages();
     fetchRepos();
     fetchEvents();
-    // fetchEvents();
     // setEvents(dummyEvents);
     // setLang(dummyLang);
     // setUser(dummyUser);

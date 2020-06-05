@@ -14,8 +14,10 @@ export default function Login({ setUsername, username }) {
       {isFetching && <Redirect to={`/user=${username}`} />}
       <i className="login-icon fab fa-github"></i>
       <h1>Github Data Visualizer</h1>
-      <input placeholder='Your github @username' value={username} onChange={e => setUsername(e.target.value)} />
-      <button onClick={handleSubmit}>Go!</button>
+      <form onSubmit={handleSubmit}>
+        <input placeholder='Your github @username' value={username} onChange={e => setUsername(e.target.value)} />
+        <button type='submit'>Go!</button>
+      </form>
     </div>
   )
 }

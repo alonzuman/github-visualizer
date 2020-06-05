@@ -1,27 +1,41 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import GhPolyglot from 'gh-polyglot';
 import { Doughnut } from 'react-chartjs-2';
+import { useParams } from 'react-router-dom';
 
-export default function DoughnutGraph({ languages }) {
+export default function DoughnutGraph() {
+  const { username } = useParams();
+  const [languages, setLanguages] = useState([]);
+
   let labels = [];
   let dataSetsData = [];
   let languageColors = [];
 
-  console.log(languages)
+  const fetchLanguages = async () => {
+    const me = await new GhPolyglot(`${username}`);
+    me.userStats((err, stats) => {
+      if (err) {
+        console.log(err)
+      }
+      setLanguages(stats);
+    });
+  };
+
+  const mapLanguages = (languages) => {
+    console.log(languages)
+    languages.map(language => {
+
+      labels.push(language.label);
+      dataSetsData.push(language.value);
+      languageColors.push(language.color)
+    })
+  }
 
   useEffect(() => {
-    mapLanguages();
+    fetchLanguages();
+    mapLanguages(languages)
+    console.log(languages)
   }, [])
-
-  const mapLanguages = () => {
-    if (languages) {
-      languages.map(language => {
-        labels.push(language.label);
-        dataSetsData.push(language.value);
-        languageColors.push(language.color)
-      }
-      )
-    }
-  }
 
   const data = {
     labels: labels,
@@ -35,6 +49,7 @@ export default function DoughnutGraph({ languages }) {
   return (
     <div className='graph-container'>
       <h2>Top Languages</h2>
+      {/* {languages.map(language => <h1>hi</h1>)} */}
       {languages && <Doughnut data={data} />}
     </div>
   )

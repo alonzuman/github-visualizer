@@ -7,7 +7,15 @@ a {
   height: 100vh;
   max-width: 768px;
   margin: 0 auto;
-  padding: 300px 10rem;
+  padding: 150px 10rem;
+}
+
+button:focus {
+  outline:none;
+}
+
+button:hover {
+  cursor:pointer;
 }
 
 .login-container h1 {
