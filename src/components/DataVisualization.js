@@ -1,6 +1,6 @@
 import React from 'react';
 import './DataVisualization.css';
-import BarGraph from './BarGraph';
+// import BarGraph from './BarGraph';
 import Repositories from './Repositories';
 import DoughnutGraph from './DoughnutGraph';
 import PolarGraph from './PolarGraph';

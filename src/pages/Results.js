@@ -19,7 +19,6 @@ export default function Results() {
     try {
       const res = await axios.get(`https://api.github.com/users/${username}`);
       setUser(res.data);
-      // console.log(res.data);
     } catch (error) {
       console.log(error)
       setError('Failed to fetch');
@@ -30,7 +29,6 @@ export default function Results() {
     try {
       const res = await axios.get(`https://api.github.com/users/${username}/repos?per_page=100`);
       setRepos(res.data)
-      // console.log(res.data);
     } catch (error) {
       setError('Failed to fetch')
     }
@@ -39,7 +37,6 @@ export default function Results() {
   const fetchEvents = async () => {
     try {
       const res = await axios.get(`https://api.github.com/users/${username}/events`);
-      // console.log(res.data);
       setEvents(res.data);
     } catch (error) {
       setError('Failed to fetch')
@@ -47,8 +44,8 @@ export default function Results() {
   }
 
   const fetchLanguages = async () => {
-    const me = new GhPolyglot(`${username}`);
-    await me.userStats((err, stats) => {
+    const me = await new GhPolyglot(`${username}`);
+    me.userStats((err, stats) => {
       if (err) {
         console.log(err)
       }
@@ -62,6 +59,7 @@ export default function Results() {
     fetchLanguages();
     fetchRepos();
     fetchEvents();
+    // fetchEvents();
     // setEvents(dummyEvents);
     // setLang(dummyLang);
     // setUser(dummyUser);
@@ -74,7 +72,7 @@ export default function Results() {
       {isLoading && <h1>Spinner</h1>}
       {error && <Redirect to='/error' />}
       {user && <Personal user={user} />}
-      {(events && repos) && <DataVisualization languages={lang} repositories={repos} events={events} />}
+      {events && <DataVisualization languages={lang} repositories={repos} events={events} />}
     </div>
   )
 }
